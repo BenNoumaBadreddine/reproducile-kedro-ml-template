@@ -1,0 +1,24 @@
+steps:
+  - script: |
+      echo "##vso[task.prependpath]$HOME/.local/bin"
+    displayName: Add PATH for task execution
+
+  - script: |
+      curl -sSL https://install.python-poetry.org | python3 -
+    displayName: 'Install Poetry'
+
+  - script: |
+      poetry --version
+    displayName: 'Display Poetry version'
+
+  - script: |
+      poetry env info
+    displayName: 'Display poetry environment information'
+
+  - script: |
+      poetry install --sync --with $(poetryDependencies) --no-interaction --no-root
+    displayName: 'Install poetry dependencies with group: $(poetryDependencies)'
+  
+  - script: |
+      poetry show --with $(poetryDependencies)
+    displayName: 'Show installed dependencies with group: $(poetryDependencies)'

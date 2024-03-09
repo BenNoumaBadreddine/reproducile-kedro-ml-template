@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: project-NAME Inference API",
+            "type": "debugpy",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/project_name_inference",
+            "module": "uvicorn",
+            "args": [
+                "main:app",
+                "--host",
+                "localhost",
+                "--reload"
+            ],
+            "justMyCode": false,
+            "envFile": "${workspaceFolder}/.devcontainer/devcontainer.env",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src/:"
+            }
+        }
+    ]
+}

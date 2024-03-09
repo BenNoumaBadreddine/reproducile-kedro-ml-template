@@ -1,0 +1,33 @@
+steps:
+
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '7.0.x'
+    displayName: "Use DotNet task SDK"
+
+  - task: gitversion/setup@0
+    inputs:
+      versionSpec: '5.x'
+    displayName: "GitVersion setup"
+        
+  - task: gitversion/execute@0
+    inputs:
+      versionSpec: 'latest'
+      useConfigFile: true
+      configFilePath: '.devops/build/gitversion.yml'
+    displayName: "GitVersion execute"
+    env:
+      DEBUG: true
+
+  - powershell: |
+      $buildNumber = "$(Build.BuildNumber)"
+      $modifiedBuildNumber = $buildNumber -replace '\+', '_'
+      Write-Host "##vso[build.updatebuildnumber]$modifiedBuildNumber"
+      echo $buildNumber
+    displayName: 'Replace "+" with "-" in Build Number'
+
+  - script: |
+      echo "Current SemVer = $(GitVersion.SemVer)"
+      echo "Current Build.BuildNumber = $(Build.BuildNumber)"
+    displayName: "Display GitVersion.SemVer and Build.BuildNumber"
