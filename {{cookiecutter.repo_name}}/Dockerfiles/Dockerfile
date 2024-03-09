@@ -2,8 +2,6 @@ FROM python:3.9-bullseye
 
 RUN apt-get update
 
-ENV PATH="${PATH}:/opt/mssql-tools18/bin"
-
 # Install poetry
 ENV PATH="${PATH}:/root/.local/bin/poetry" 
 RUN curl -sSL https://install.python-poetry.org | python3 -
