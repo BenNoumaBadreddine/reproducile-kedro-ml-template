@@ -1,0 +1,17 @@
+{
+    "python.languageServer": "Pylance",
+    "editor.formatOnSave": true,
+//    "python.pythonPath": "~/.cache/pypoetry/virtualenvs/data-discovery-QxE1xTub-py3.9/bin/python",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit",
+        "source.fixAll": "explicit"
+    },
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "src"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    }
+}

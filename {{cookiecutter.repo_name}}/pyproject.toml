@@ -1,0 +1,104 @@
+[tool.poetry]
+name = "{{cookiecutter.repo_name}}"
+version = "0.1.0"
+description = ""
+authors =["{{cookiecutter.author_name}}"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9.13,<3.11"
+pandas
+numpy
+requests
+typing-extensions
+
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+black
+isort
+mypy
+flake8
+pytest
+jupyter
+jupyterlab
+ipython
+nbstripout
+ipykernel
+ipywidgets
+commitizen
+pre-commit
+
+[tool.poetry.group.training]
+optional = true
+
+[tool.poetry.group.training.dependencies]
+scikit-learn = ">=0.22.1,<1.2.1"
+
+
+[tool.poetry.group.pipelines]
+optional = true
+
+[tool.poetry.group.pipelines.dependencies]
+mlflow
+kedro-azureml
+kedro-docker
+adlfs
+azureml-core
+azureml-mlflow
+
+[tool.poetry.group.azure]
+optional = true
+
+[tool.poetry.group.azure.dependencies]
+azure-core
+azure-identity
+azure-keyvault-secrets
+azure-storage-blob
+opencensus-ext-azure
+
+[tool.mypy]
+strict = true
+
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+	\.git
+| \.hg
+| \.mypy_cache
+| \.tox
+| \.venv
+| _build
+| buck-out
+| build
+)/
+'''
+
+[tool.pytest.ini_options]
+addopts = """
+--cov-report term-missing \
+--cov src/bim_ai -ra"""
+
+[tool.coverage.report]
+fail_under = 0
+show_missing = true
+exclude_lines = ["pragma: no cover", "raise NotImplementedError"]
+
+[tool.isort]
+profile = "black"
+line_length = 5000
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "semver"
+version_provider = "poetry"
+update_changelog_on_bump = true
+major_version_zero = true
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

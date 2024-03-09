@@ -1,0 +1,12 @@
+mode: Mainline
+branches:
+  master:
+    tag: prod
+    increment: Patch
+  develop:
+    tag: dev
+    increment: Patch
+ignore:
+  sha: []
+merge-message-formats: {}
+update-build-number: true

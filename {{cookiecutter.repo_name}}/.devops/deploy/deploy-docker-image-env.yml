@@ -1,0 +1,49 @@
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+    - pyproject.toml
+
+variables:
+  - name: DOCKER_BUILDKIT
+    value: 1
+  - name: poetryDependencies
+    value: "pipelines"
+  - name: dockerImageName
+    value: 'project-name-env'
+
+pool: BIMOne-Linux
+
+stages:
+- stage: UpdateAzureMLWorkspaceCustomVenv
+  jobs:
+    - job: UpdateCustomVenv
+      displayName: "Update Azure ML Workspace custom env"
+      steps:
+
+      - template: build/build-gitversion-number.yml
+
+      - task: Docker@2
+        displayName: "Build docker images from Dockerfile"
+        inputs:
+          containerRegistry: 'BIMONE-docker-registry-service-connection'
+          repository: $(dockerImageName)
+          command: 'build'
+          Dockerfile: 'Dockerfiles/Dockerfile'
+          buildContext: '.'
+          tags:  |
+            $(Build.BuildNumber)
+            latest
+          arguments: '--build-arg KEYVAULT_NAME=bimai-key-vault'
+
+      - task: Docker@2
+        displayName: "Push docker images: latest and $(Build.BuildNumber)"
+        inputs:
+          containerRegistry: 'BIMONE-docker-registry-service-connection'
+          repository: $(dockerImageName)
+          command: 'push'
+          tags: |
+            $(Build.BuildNumber)
+            latest
