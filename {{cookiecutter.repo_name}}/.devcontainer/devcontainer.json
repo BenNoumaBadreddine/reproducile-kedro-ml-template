@@ -7,7 +7,9 @@
 	],
 	"remoteEnv": {
 		"PYTHONPATH": "${containerWorkspaceFolder}/src:${containerEnv:PYTHONPATH}",
-		"PATH": "/home/vscode/.local/bin::${containerEnv:PATH}"
+		"PATH": "/home/vscode/.local/bin:${containerEnv:PATH}",
+		"--env-file",
+		".devcontainer/devcontainer.env"
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
