@@ -1,5 +1,5 @@
-"""kedro-project file for ensuring the package is executable
-as `kedro-project` and `python -m kedro_project`
+"""{{cookiecutter.repo_name}} file for ensuring the package is executable
+as `{{cookiecutter.repo_name}}` and `python -m {{cookiecutter.repo_name}}`
 """
 import importlib
 from pathlib import Path
