@@ -1,1 +1,23 @@
+credentials:
+  az_creds:
+    account_name:
+    account_key:
+  az_source_db_creds:
+    con: 
+  az_feedback_db_creds:
+    con: 
 
+app_insights:
+  instrumentation_key:
+  connection_string:
+
+paths:
+  root_data: abfs://kedro-storage/
+
+schema:
+  types:
+    string: "string"
+    int: "Int64"
+    float: "Float64"
+    boolean: "boolean"
+    datetime: "datetime64[ns]"
