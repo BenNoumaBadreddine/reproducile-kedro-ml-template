@@ -1,10 +1,9 @@
 from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 
-from email_ai.extras.delete_me import print_message
+from {{cookiecutter.repo_name}}.extras.delete_me import print_message
 
 
-    
 def create_pipeline(**kwargs) -> Pipeline:
     return Pipeline([
         node(
