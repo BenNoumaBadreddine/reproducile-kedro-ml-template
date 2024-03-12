@@ -32,6 +32,7 @@ ipywidgets = "^8.1.2"
 commitizen = "^3.18.0"
 pre-commit = "^3.6.2"
 ipython = "^8.12.0"
+ruamel-yaml = "^0.18.6"
 
 
 [tool.poetry.group.pipelines.dependencies]
@@ -41,6 +42,8 @@ azureml-core = "^1.55.0.post1"
 azureml-mlflow = "^1.55.0"
 kedro-azureml = "^0.7.0"
 kedro-docker = "^0.5.0"
+kedro = "0.18.12"
+kedro-viz = "^8.0.1"
 
 
 [tool.poetry.group.azure.dependencies]
@@ -49,6 +52,10 @@ azure-identity = "^1.15.0"
 azure-keyvault-secrets = "^4.8.0"
 opencensus-ext-azure = "^1.1.13"
 azure-storage-blob = "12.19.0"
+
+[tool.poetry.group.inference.dependencies]
+fastapi = "^0.110.0"
+uvicorn = "0.27.1"
 
 [tool.mypy]
 strict = true
@@ -69,10 +76,15 @@ exclude = '''
 )/
 '''
 
+[tool.kedro]
+package_name = "email_ai"
+project_name = "email_ai"
+kedro_init_version = "0.18.4"
+
 [tool.pytest.ini_options]
 addopts = """
 --cov-report term-missing \
---cov src/bim_ai -ra"""
+--cov src -ra"""
 
 [tool.coverage.report]
 fail_under = 0
