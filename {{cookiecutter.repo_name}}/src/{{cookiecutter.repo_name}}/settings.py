@@ -25,11 +25,15 @@ SESSION_STORE_ARGS = {"path": str(Path(__file__).parents[2])}
 # CONF_SOURCE = "conf"
 
 # Class that manages how configuration is loaded.
-from kedro.config import OmegaConfigLoader  # noqa: E402
+# from kedro.config import OmegaConfigLoader  # noqa: E402
+from kedro.config import TemplatedConfigLoader
 
-CONFIG_LOADER_CLASS = OmegaConfigLoader
+
+CONFIG_LOADER_CLASS = TemplatedConfigLoader
+# CONFIG_LOADER_CLASS = OmegaConfigLoader
 # Keyword arguments to pass to the `CONFIG_LOADER_CLASS` constructor.
 CONFIG_LOADER_ARGS = {
+    "globals_pattern": "*globals.yml",
     "base_env": "base",
     "default_run_env": "local",
     "config_patterns": {
