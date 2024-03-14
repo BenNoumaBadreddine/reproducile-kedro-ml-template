@@ -14,8 +14,8 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
-    "postCreateCommand":".devcontainer/install_post_create_dependencies.sh"
-	 "postStartCommand":"git config --global --add safe.directory /workspaces/{{cookiecutter.repo_name}} && poetry run pre-commit install && poetry run pre-commit install-hooks",
+    "postCreateCommand":".devcontainer/install_post_create_dependencies.sh",
+    "postStartCommand":"git config --global --add safe.directory /workspaces/{{cookiecutter.repo_name}} && poetry run pre-commit install && poetry run pre-commit install-hooks",
 	// Configure tool-specific properties.
     // "customizations": {
 	// 	"vscode": {
