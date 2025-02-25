@@ -7,5 +7,5 @@ sudo apt-get update
 curl -sSL https://install.python-poetry.org | python3 -
 
 # Install project dependencies using Poetry
-poetry install --sync --with azure,pipelines,training --no-root
+pip install pre-commit && poetry install --sync --with azure,pipelines,training,dev --no-root
 
