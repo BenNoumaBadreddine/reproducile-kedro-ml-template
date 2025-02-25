@@ -59,6 +59,7 @@ docs/_build/
 target/
 
 # DotEnv configuration
+.devcontainer/devcontainer.env
 .env
 
 # Database
